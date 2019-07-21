@@ -5,3 +5,17 @@
 .foto{
     height: 100px;
 }
+
+.PaginaInicial-SearchForm{
+   
+    text-align: center;
+}
+
+.PaginaInicial-LoginForm{
+    text-align: Right;
+    
+}
+
+.LogOut{
+    text-align: Right;
+}
