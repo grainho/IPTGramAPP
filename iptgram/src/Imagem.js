@@ -9,7 +9,7 @@ class Imagem extends Component {
     }
 
     Click() {
-        //referncia o click que esta no ficheiro inicio
+        //referncia o click que esta na classe inicio
         this.props.Click(this.props.id)
     }
     render() {

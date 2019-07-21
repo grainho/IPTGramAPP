@@ -11,11 +11,14 @@ class Inicio extends Component {
         this.state = {
             posts: [],
             mostraPopup: false,
-            mostraImg: {}
+            mostraImg: {},
+            procura: "",
 
         }
         this.Click = this.Click.bind(this);
         this.closeImg = this.closeImg.bind(this);
+        this.procurar = this.procurar.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     async componentDidMount() {
@@ -32,15 +35,15 @@ class Inicio extends Component {
         let resposta = await axios.get(url);
 
         let obj = {
-            image: "" + url + "/image",
+            image: resposta.data.id,
             user: resposta.data.user.name,
             date: resposta.data.postedAt,
             subtitle: resposta.data.caption,
             likes: resposta.data.likes
 
         }
-        
-        let commentsResposta = await axios.get(''+url+ '/comments');
+
+        let commentsResposta = await axios.get('' + url + '/comments');
         obj.comments = commentsResposta.data;
 
         this.setState({
@@ -56,9 +59,34 @@ class Inicio extends Component {
         })
     }
 
+
+    async procurar(evt) {
+        evt.preventDefault();
+        let resposta = await axios.get('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/?query=' + this.state.procura);
+        let listaPosts = resposta.data;
+
+        this.setState({
+            posts: listaPosts,
+            SearchTxt: ""
+        })
+    }
+
+    handleChange(evt) {
+        this.setState({
+            [evt.target.name]: evt.target.value
+
+         })
+    }
+
     render() {
         return (
             <div className="PaginaInicial">
+                <form className="PaginaInicial-SearchForm" onSubmit={this.procurar} >
+
+                    <input placeholder="Pesquisar" name="procura" onChange={this.handleChange} value={this.state.procura} />
+                    <button type="submit" >🔍</button>
+
+                </form>
                 {
                     this.state.posts.map(function (p) {
                         return ([

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+import Imagem from './Imagem'
 
 class ImagemSelec extends Component {
     constructor(props) {
         super(props);
-        this.statev= {
-          
-        }
+        
         this.closeImg = this.closeImg.bind(this);
     }
 
@@ -17,7 +16,7 @@ class ImagemSelec extends Component {
 
         return (
             <div className="ImagemSelec">
-                <img src={this.props.image} />
+                <Imagem id={this.props.image}  />
                 <h1>{this.props.user}</h1>
                 <h3>{this.props.date}</h3>
                 <h3>{this.props.likes}</h3>
@@ -33,7 +32,7 @@ class ImagemSelec extends Component {
                     }.bind(this)
                     )
                 */}
-                <button onClick={this.closePopup}>❌</button>
+                <button onClick={this.closeImg}>❌</button>
 
             </div>
 
