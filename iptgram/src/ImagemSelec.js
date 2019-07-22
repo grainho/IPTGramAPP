@@ -3,13 +3,34 @@ import './ImagemSelec.css'
 
 class ImagemSelec extends Component {
     constructor(props) {
+
         super(props);
+
+        this.state={
+            comentario:""
+        }
         
         this.closeImg = this.closeImg.bind(this);
+        this.handleMudancaComentario = this.handleMudancaComentario.bind(this);
+        this.handleSubmicaoComentario = this.handleSubmicaoComentario.bind(this);
     }
 
     closeImg() {
         this.props.closeImg();
+    }
+
+    handleMudancaComentario(evt){
+        this.setState({
+            comentario:evt.target.value
+        })
+    }
+
+    handleSubmicaoComentario(evt){
+        evt.preventDefault();
+        this.props.handleSubmicaoComentario(this.state.comentario, this.props.image);
+        this.setState({
+            comentario:""
+        })
     }
 
     render() {
@@ -43,7 +64,13 @@ class ImagemSelec extends Component {
                     )
                 }
                 <h3>Likes: {this.props.likes}</h3>
-                
+
+                {
+                this.props.autenticado &&
+                <form onSubmit ={this.handleSubmicaoComentario}>
+                    <input id="subCom" type="text" value={this.state.comentario} onChange={this.handleMudancaComentario} placeholder="Deixe aqui o seu comentário"/>
+                </form>
+                }
 
             </div>
 

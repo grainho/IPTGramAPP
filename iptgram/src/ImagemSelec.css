@@ -1,8 +1,18 @@
+span{
+    float: left;
+}
+
 .ImagemSelec{
     background-color: black;
-    margin: auto;	    margin: auto;
-    padding: 20px;	    padding: 20px;
-    border: 1px solid #888;	    border: 1px solid white;
+    margin: auto;	    
+    padding: 20px;	    
+    border: 1px solid white;	    
     width: 80%;
-    color: white	    
+    color: white;	 
+
+}
+
+#subCom{
+    width: 775px;
+    float: left;
 }

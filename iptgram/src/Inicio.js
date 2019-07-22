@@ -24,6 +24,7 @@ class Inicio extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.Login = this.Login.bind(this);
         this.LogOut = this.LogOut.bind(this);
+        this.handleSubmicaoComentario = this.handleSubmicaoComentario.bind(this);
     }
 
     async componentDidMount() {
@@ -47,6 +48,7 @@ class Inicio extends Component {
             subtitle: resposta.data.caption,
             likes: resposta.data.likes,
             comments: []
+            
 
         }
         
@@ -138,6 +140,24 @@ class Inicio extends Component {
 
     }
 
+    async handleSubmicaoComentario(comentario,id){
+        let obj ={
+            "postId":id,
+            "text": comentario
+        };
+        let response =  await axios.post('https://ipt-ti2-iptgram.azurewebsites.net/api/comments',obj,{
+        withCredentials:true,
+        crossdomain:true,
+        headers:{
+            "Content-Type":"application/json"
+        }
+        });
+        //faz um novo pedido pelos comentarios do post
+        this.Click(id);
+
+
+     }
+
     render() {
         return (
             <div className="PaginaInicial">
@@ -193,6 +213,8 @@ class Inicio extends Component {
                         likes={this.state.mostraImg.likes}
                         comments={this.state.mostraImg.comments}
                         closeImg={this.closeImg}
+                        handleSubmicaoComentario={this.handleSubmicaoComentario}
+                        autenticado={this.state.estaAutenticado}
                     />
                     
                 }
