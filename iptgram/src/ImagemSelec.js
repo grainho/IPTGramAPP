@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Imagem from './Imagem'
+import './ImagemSelec.css'
 
 class ImagemSelec extends Component {
     constructor(props) {
@@ -15,24 +15,35 @@ class ImagemSelec extends Component {
     render() {
 
         return (
+            
             <div className="ImagemSelec">
-                <Imagem id={this.props.image}  />
-                <h1>{this.props.user}</h1>
-                <h3>{this.props.date}</h3>
-                <h3>{this.props.likes}</h3>
-                <h3>{this.props.subtitle}</h3>
+                <button onClick={this.closeImg} >❌</button>              
+                <br /><br />
+                <img src={'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + this.props.image + '/image'} />
+                <br />
+                <span>{this.props.user}: </span> 
+                <span>{this.props.subtitle}</span>
+                <br />              
+                <span>Postado em: {this.props.date.substring(0, this.props.date.indexOf("T"))}</span>
+                <br /><br />
+                
+                
 
-                {/*
+                {
                     this.props.comments.map(function (c) {
                         return ([
-                            <h4>{c.text}</h4>,
-                            <h4>{c.user.name}</h4>,
-                            <h4>{c.postedAt}</h4>
+                            
+                            <span>{c.user.name}: </span>,
+                            <span>{c.text}</span>,
+                            <br />,
+                            <span>Postado em: {c.postedAt.substring(0, c.postedAt.indexOf("T"))}</span>, 
+                            <br />
                         ])
                     }.bind(this)
                     )
-                */}
-                <button onClick={this.closeImg}>❌</button>
+                }
+                <h3>Likes: {this.props.likes}</h3>
+                
 
             </div>
 

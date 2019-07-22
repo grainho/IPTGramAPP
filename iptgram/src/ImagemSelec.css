@@ -1,0 +1,8 @@
+.ImagemSelec{
+    background-color: black;
+    margin: auto;	    margin: auto;
+    padding: 20px;	    padding: 20px;
+    border: 1px solid #888;	    border: 1px solid white;
+    width: 80%;
+    color: white	    
+}

@@ -39,18 +39,20 @@ class Inicio extends Component {
         let url = 'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id
         let resposta = await axios.get(url);
 
+        
         let obj = {
-            image: resposta.data.id,
+            imagem: ""+id,
             user: resposta.data.user.name,
             date: resposta.data.postedAt,
             subtitle: resposta.data.caption,
-            likes: resposta.data.likes
+            likes: resposta.data.likes,
+            comments: []
 
         }
-
-        let commentsResposta = await axios.get('' + url + '/comments');
+        
+        let commentsResposta = await axios.get(url + '/comments');
         obj.comments = commentsResposta.data;
-
+        
         this.setState({
             mostraImg: obj,
             mostraPopup: true
@@ -60,7 +62,7 @@ class Inicio extends Component {
 
     closeImg() {
         this.setState({
-            mostraImg: false
+            mostraPopup: false
         })
     }
 
@@ -178,20 +180,25 @@ class Inicio extends Component {
                         ])
                     }.bind(this)
                     )
+                    
                 }
                 {
                     // se for verdade e renderizado senao nao e
-                    this.state.mostraImg &&
+                   this.state.mostraPopup && 
                     <ImagemSelec
-                        image={this.state.mostraImg.imagem}
+                        image={this.state.mostraImg.imagem}                
                         user={this.state.mostraImg.user}
                         date={this.state.mostraImg.date}
                         subtitle={this.state.mostraImg.subtitle}
                         likes={this.state.mostraImg.likes}
+                        comments={this.state.mostraImg.comments}
+                        closeImg={this.closeImg}
                     />
-
+                    
                 }
+                
             </div>
+            
         );
     }
 
