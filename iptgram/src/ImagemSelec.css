@@ -1,18 +1,33 @@
 span{
     float: left;
 }
+button{
+    border-radius: 5px;
+}
+
+.fechar{
+    position: absolute;
+    top:0%;
+    right:0%;
+}
 
 .ImagemSelec{
-    background-color: black;
+    background-color: gray;
     margin: auto;	    
     padding: 20px;	    
     border: 1px solid white;	    
-    width: 80%;
-    color: white;	 
+    width: 50%;
+    color: white;
+    position: absolute;
+    z-index:100;
+    top:30%;
+    left:24%;	
+    border-radius: 5px;
 
 }
 
 #subCom{
-    width: 775px;
+    width: 760px;
     float: left;
+    border-radius: 5px;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Imagem.css'
 
 
 class Imagem extends Component {
@@ -8,15 +9,18 @@ class Imagem extends Component {
         this.Click = this.Click.bind(this);
     }
 
+    /**
+     * faz referencia à função Click da classe Inicio
+     */
     Click() {
-        //referncia o click que esta na classe inicio
+        
         this.props.Click(this.props.id)
     }
     render() {
 
         return (
-            <div className="Image">
-                <img src={'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + this.props.id + '/image'} onClick={this.Click} />
+            <div>
+                <img id="Imagem" src={'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + this.props.id + '/image'} onClick={this.Click} />
             </div>
 
         );

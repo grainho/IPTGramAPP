@@ -13,18 +13,30 @@ class ImagemSelec extends Component {
         this.closeImg = this.closeImg.bind(this);
         this.handleMudancaComentario = this.handleMudancaComentario.bind(this);
         this.handleSubmicaoComentario = this.handleSubmicaoComentario.bind(this);
+       
     }
 
+    /**
+     * faz referencia à função closeImg da classe Inicio
+     */
     closeImg() {
         this.props.closeImg();
     }
 
+    /**
+     * Coloca no atributo comentario o valor na caixa de texto
+     * @param {*} evt evento a ser ralizado
+     */
     handleMudancaComentario(evt){
         this.setState({
             comentario:evt.target.value
         })
     }
 
+    /**
+     * faz referencia à função handleSubmicaoComentario da classe Inicio e coloca uma string vazia no atributo comentario
+     * @param {*} evt evento a ser ralizado
+     */
     handleSubmicaoComentario(evt){
         evt.preventDefault();
         this.props.handleSubmicaoComentario(this.state.comentario, this.props.image);
@@ -33,17 +45,18 @@ class ImagemSelec extends Component {
         })
     }
 
+    
+
     render() {
 
         return (
             
             <div className="ImagemSelec">
-                <button onClick={this.closeImg} >❌</button>              
+                <button className="fechar" onClick={this.closeImg} >❌</button>              
                 <br /><br />
                 <img src={'https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + this.props.image + '/image'} />
                 <br />
-                <span>{this.props.user}: </span> 
-                <span>{this.props.subtitle}</span>
+                <span>{this.props.user}: {this.props.subtitle}</span>                 
                 <br />              
                 <span>Postado em: {this.props.date.substring(0, this.props.date.indexOf("T"))}</span>
                 <br /><br />
@@ -63,7 +76,11 @@ class ImagemSelec extends Component {
                     }.bind(this)
                     )
                 }
-                <h3>Likes: {this.props.likes}</h3>
+
+               
+
+                <span>Likes: {this.props.likes}</span>
+                <br />
 
                 {
                 this.props.autenticado &&
